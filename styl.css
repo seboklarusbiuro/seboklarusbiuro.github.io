@@ -1,0 +1,118 @@
+:root {
+  --tlo: #14110d; --karta: #221b14; --zloto: #f3b33d; --zloto2: #ffd877;
+  --tekst: #f1e6d2; --szary: #b9a98f; --mgla: #8fa3a8;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--tlo); color: var(--tekst);
+  font: 18px/1.6 "Segoe UI", Roboto, "Noto Sans", system-ui, sans-serif;
+}
+html[lang="pl"] .en, html[lang="en"] .pl { display: none !important; }
+a { color: var(--zloto2); }
+h2 { font-family: Georgia, "Times New Roman", serif; color: var(--zloto); font-size: 2rem; margin: 0 0 .6rem; }
+
+/* górny pasek */
+.gora {
+  position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center;
+  padding: .5rem 1rem; background: rgba(20, 17, 13, .88); backdrop-filter: blur(6px);
+  border-bottom: 1px solid #3a2e20;
+}
+.marka { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: var(--tekst); font-weight: 700; }
+.marka img { border-radius: 8px; }
+.linki { display: flex; align-items: center; gap: 1rem; }
+.linki a { text-decoration: none; color: var(--tekst); font-size: .95rem; }
+.linki a:hover { color: var(--zloto2); }
+#jezyk {
+  background: none; border: 1px solid var(--zloto); color: var(--zloto); border-radius: 6px;
+  padding: .2rem .6rem; font-weight: 700; cursor: pointer;
+}
+
+/* nagłówek z okładką */
+.bohater { position: relative; min-height: min(88vh, 780px); display: grid; place-items: center; text-align: center; overflow: hidden; }
+.bohater-tlo {
+  position: absolute; inset: 0; background: url(img/kwiat_tlo.jpg) center / cover no-repeat;
+  filter: brightness(.55);
+}
+.bohater-tlo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, var(--tlo)); }
+.bohater-tresc { position: relative; padding: 2rem 1rem 3rem; max-width: 900px; }
+.bohater h1 { margin: 0; }
+.logo { width: min(560px, 90vw); height: auto; filter: drop-shadow(0 6px 18px #000a); }
+.hasło { font-size: 1.25rem; text-shadow: 0 2px 6px #000; margin: .5rem 0 1.4rem; }
+.platformy { color: var(--szary); font-size: .95rem; text-shadow: 0 1px 4px #000; }
+
+.przycisk {
+  display: inline-block; padding: .8rem 1.8rem; border-radius: 12px; text-decoration: none;
+  background: linear-gradient(#ffcf5a, #e69a1f); color: #2a1a05; font-weight: 800; font-size: 1.15rem;
+  box-shadow: 0 4px 0 #9b5f0c, 0 8px 22px #0008; transition: transform .1s;
+}
+.przycisk:hover { transform: translateY(-2px); }
+.przycisk.duzy { font-size: 1.5rem; padding: 1rem 2.4rem; }
+.przycisk.drugi { background: linear-gradient(#c9d6d8, #8fa3a8); box-shadow: 0 4px 0 #56676b, 0 8px 22px #0008; color: #142023; }
+
+main { max-width: 1150px; margin: 0 auto; padding: 0 1rem; }
+section { margin: 3.5rem 0; }
+
+/* film + opis */
+.pas { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: start; }
+.film { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; cursor: pointer; background: #000; box-shadow: 0 10px 30px #000a; }
+.film img, .film iframe { width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
+.graj-film {
+  position: absolute; inset: 0; margin: auto; width: 84px; height: 84px; border-radius: 50%;
+  border: 0; background: #e33c; color: #fff; font-size: 2.2rem; cursor: pointer;
+}
+.cechy { padding-left: 0; list-style: none; }
+.cechy li { margin: .35rem 0; }
+
+/* galeria */
+.galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.galeria img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; cursor: zoom-in;
+  box-shadow: 0 4px 14px #0009; transition: transform .15s;
+}
+.galeria img:hover { transform: scale(1.03); }
+.srodek { text-align: center; }
+.male { color: var(--szary); font-size: .95rem; }
+
+/* Za Mgłą */
+.mgla {
+  position: relative; padding: 2.5rem 2rem; border-radius: 20px; overflow: hidden;
+  background: radial-gradient(ellipse at 30% 0%, #3d4b4e 0%, #1c2426 55%, #121719 100%);
+  border: 1px solid #3e4c4f;
+}
+.mgla::before {
+  content: ""; position: absolute; inset: -20%; pointer-events: none; opacity: .35;
+  background: radial-gradient(circle at 20% 40%, #fff3 0 18%, transparent 30%),
+              radial-gradient(circle at 75% 60%, #fff2 0 22%, transparent 35%);
+  animation: dryf 22s ease-in-out infinite alternate;
+}
+@keyframes dryf { to { transform: translateX(8%) translateY(-4%); } }
+.mgla > * { position: relative; }
+.mgla h2 { color: #dfe8e9; }
+.mgla h2 small { font-size: 1rem; color: var(--mgla); }
+.mgla-naglowek { display: flex; gap: 1.2rem; align-items: center; margin-bottom: 1rem; }
+.mgla-naglowek img { border-radius: 22px; box-shadow: 0 6px 18px #000a; }
+.znaczek {
+  display: inline-block; margin: 0 0 .3rem; padding: .15rem .7rem; border-radius: 99px;
+  background: #e3c15a; color: #241a03; font-weight: 800; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em;
+}
+.mgla .galeria { margin: 1.5rem 0; }
+
+.autor { max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; }
+.linki-autor { font-weight: 700; }
+footer { text-align: center; color: var(--szary); font-size: .85rem; padding: 2rem 1rem; border-top: 1px solid #3a2e20; }
+
+dialog { border: 0; padding: 0; background: transparent; max-width: 96vw; }
+dialog::backdrop { background: #000d; }
+dialog img { max-width: 96vw; max-height: 90vh; border-radius: 10px; display: block; }
+dialog button { position: absolute; top: 8px; right: 8px; background: #000a; color: #fff; border: 0; font-size: 1.4rem; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; }
+
+@media (max-width: 800px) {
+  body { font-size: 16px; }
+  .pas { grid-template-columns: 1fr; }
+  .galeria { grid-template-columns: 1fr 1fr; }
+  .linki a { display: none; }
+  .bohater { min-height: min(75vh, 640px); }
+  .hasło br { display: none; }
+  .mgla { padding: 1.5rem 1rem; }
+}
