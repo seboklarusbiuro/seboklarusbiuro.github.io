@@ -116,3 +116,4 @@ dialog button { position: absolute; top: 8px; right: 8px; background: #000a; col
   .hasło br { display: none; }
   .mgla { padding: 1.5rem 1rem; }
 }
+#licznik { margin: 0 0 .5rem; min-height: 20px; }

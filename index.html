@@ -175,6 +175,7 @@
 </main>
 
 <footer>
+  <p id="licznik"></p>
   <p>© 2026 Seboklarus · <span class="pl">Wszelkie prawa zastrzeżone</span><span class="en">All rights reserved</span></p>
 </footer>
 
@@ -191,6 +192,13 @@
   var z_adresu = (location.hash === '#en' || location.search.indexOf('lang=en') >= 0) ? 'en' : null;
   ustaw(z_adresu || zapisany || ((navigator.language || 'pl').toLowerCase().indexOf('pl') === 0 ? 'pl' : 'en'));
   btn.onclick = function () { ustaw(html.lang === 'pl' ? 'en' : 'pl'); };
+
+  // licznik odwiedzin (hits.sh, bez konta) – jedno wczytanie strony = +1
+  var licz = document.createElement('img');
+  licz.src = 'https://hits.sh/seboklarusbiuro.github.io.svg?style=flat-square&color=f3b33d&labelColor=3a2e20&label=' +
+    (html.lang === 'pl' ? 'odwiedziny' : 'visits');
+  licz.alt = ''; licz.height = 20;
+  document.getElementById('licznik').appendChild(licz);
 
   var film = document.getElementById('film');
   film.onclick = function () {
