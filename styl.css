@@ -131,3 +131,4 @@ dialog button { position: absolute; top: 8px; right: 8px; background: #000a; col
 #formularz .przycisk:disabled { opacity: .6; }
 #wynik { text-align: center; min-height: 1.5em; }
 .ukryty { display: none; }
+.przycisk.wesprzyj { margin-top: .4rem; font-size: 1rem; padding: .6rem 1.4rem; background: linear-gradient(#ff8a8a, #d9465a); color: #fff; box-shadow: 0 4px 0 #8e2234, 0 8px 22px #0008; }
