@@ -43,6 +43,7 @@
     <a href="#kwiat"><span class="pl">Kwiat Paproci</span><span class="en">Fern Flower</span></a>
     <a href="#mgla"><span class="pl">Za Mgłą</span><span class="en">Beyond the Mist</span></a>
     <a href="#autor"><span class="pl">O mnie</span><span class="en">About</span></a>
+    <a href="#kontakt" class="tylko-z-kluczem" hidden><span class="pl">Kontakt</span><span class="en">Contact</span></a>
     <button id="jezyk" type="button" aria-label="Zmień język / Change language">EN</button>
   </div>
 </nav>
@@ -172,6 +173,27 @@
     <a href="https://www.youtube.com/watch?v=0hru9cqCuyE">YouTube</a>
   </p>
 </section>
+
+<!-- ============ KONTAKT (Web3Forms – adres e-mail nie jest na stronie) ============ -->
+<section id="kontakt" class="kontakt" hidden>
+  <h2><span class="pl">Napisz do mnie</span><span class="en">Contact me</span></h2>
+  <p class="male pl">Błąd w grze, pomysł, pytanie albo propozycja współpracy – wiadomość trafi prosto do mnie.</p>
+  <p class="male en">A bug, an idea, a question or a business inquiry – your message goes straight to me.</p>
+  <form id="formularz">
+    <input type="hidden" name="access_key" value="KLUCZ_WEB3FORMS">
+    <input type="hidden" name="subject" value="Wiadomość ze strony seboklarusbiuro.github.io">
+    <input type="hidden" name="from_name" value="Strona Seboklarus">
+    <input type="checkbox" name="botcheck" class="ukryty" tabindex="-1" autocomplete="off">
+    <label><span class="pl">Imię lub nick</span><span class="en">Name or nickname</span>
+      <input type="text" name="name" maxlength="80"></label>
+    <label><span class="pl">Twój e-mail (jeśli chcesz odpowiedź)</span><span class="en">Your e-mail (if you want a reply)</span>
+      <input type="email" name="email" maxlength="120"></label>
+    <label><span class="pl">Wiadomość</span><span class="en">Message</span>
+      <textarea name="message" rows="5" maxlength="4000" required></textarea></label>
+    <button type="submit" class="przycisk"><span class="pl">Wyślij</span><span class="en">Send</span></button>
+    <p id="wynik" class="male" aria-live="polite"></p>
+  </form>
+</section>
 </main>
 
 <footer>
@@ -192,6 +214,27 @@
   var z_adresu = (location.hash === '#en' || location.search.indexOf('lang=en') >= 0) ? 'en' : null;
   ustaw(z_adresu || zapisany || ((navigator.language || 'pl').toLowerCase().indexOf('pl') === 0 ? 'pl' : 'en'));
   btn.onclick = function () { ustaw(html.lang === 'pl' ? 'en' : 'pl'); };
+
+  // formularz kontaktowy – pokazuje się dopiero, gdy jest wpisany klucz Web3Forms
+  var form = document.getElementById('formularz'), wynik = document.getElementById('wynik');
+  if (form.access_key.value.indexOf('KLUCZ') !== 0) {
+    document.getElementById('kontakt').hidden = false;
+    document.querySelector('.tylko-z-kluczem').hidden = false;
+  }
+  form.onsubmit = function (e) {
+    e.preventDefault();
+    var pl = html.lang === 'pl', b = form.querySelector('button');
+    b.disabled = true; wynik.textContent = pl ? 'Wysyłam…' : 'Sending…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.success) throw new Error(d.message);
+      form.reset(); wynik.textContent = pl ? 'Dzięki! Wiadomość wysłana.' : 'Thanks! Message sent.';
+    }).catch(function () {
+      wynik.textContent = pl ? 'Nie udało się wysłać. Spróbuj za chwilę.' : 'Could not send. Please try again later.';
+    }).finally(function () { b.disabled = false; });
+  };
 
   // licznik odwiedzin (hits.sh, bez konta) – jedno wczytanie strony = +1
   var licz = document.createElement('img');

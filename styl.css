@@ -117,3 +117,17 @@ dialog button { position: absolute; top: 8px; right: 8px; background: #000a; col
   .mgla { padding: 1.5rem 1rem; }
 }
 #licznik { margin: 0 0 .5rem; min-height: 20px; }
+
+/* kontakt */
+.kontakt { max-width: 640px; margin-left: auto; margin-right: auto; text-align: center; }
+#formularz { display: grid; gap: .9rem; text-align: left; margin-top: 1rem; }
+#formularz label { display: grid; gap: .3rem; font-weight: 600; font-size: .95rem; }
+#formularz input, #formularz textarea {
+  font: inherit; color: var(--tekst); background: var(--karta); border: 1px solid #4a3b28;
+  border-radius: 10px; padding: .6rem .8rem;
+}
+#formularz input:focus, #formularz textarea:focus { outline: 2px solid var(--zloto); border-color: transparent; }
+#formularz .przycisk { justify-self: center; border: 0; cursor: pointer; }
+#formularz .przycisk:disabled { opacity: .6; }
+#wynik { text-align: center; min-height: 1.5em; }
+.ukryty { display: none; }
