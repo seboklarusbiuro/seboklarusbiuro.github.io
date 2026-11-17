@@ -132,3 +132,10 @@ dialog button { position: absolute; top: 8px; right: 8px; background: #000a; col
 #wynik { text-align: center; min-height: 1.5em; }
 .ukryty { display: none; }
 .przycisk.wesprzyj { margin-top: .4rem; font-size: 1rem; padding: .6rem 1.4rem; background: linear-gradient(#ff8a8a, #d9465a); color: #fff; box-shadow: 0 4px 0 #8e2234, 0 8px 22px #0008; }
+
+/* nowości */
+.nowosci .wpis { background: var(--karta); border: 1px solid #3a2e20; border-left: 4px solid var(--zloto); border-radius: 10px; padding: 1rem 1.25rem; }
+.nowosci .data { margin: 0; color: var(--zloto2); font-size: .9rem; font-weight: 700; }
+.nowosci h3 { margin: .2rem 0 .5rem; font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; }
+.nowosci p { margin: .4rem 0; }
+.nowosci { max-width: 800px; margin-left: auto; margin-right: auto; }
